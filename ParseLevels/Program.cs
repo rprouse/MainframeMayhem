@@ -7,6 +7,9 @@ namespace ParseLevels;
 
 class Program
 {
+    const int WIDTH = 20;
+    const int HEIGHT = 18;
+
     static Dictionary<char, byte> TileMap { get; } = CreateTileMap();
     static int Count { get; set; } = 0;
 
@@ -47,43 +50,42 @@ class Program
             string name = null;
             List<string> puzzle = new List<string>();
 
-            using(var file = new System.IO.StreamReader(filename))
+            using TextReader input = new StreamReader(filename);
+             
+            try
             {
-                try
+                string line = input.ReadLine();
+                while(line != null)
                 {
-                    string line = file.ReadLine();
-                    while(line != null)
+                    if(line.StartsWith(";"))
                     {
-                        if(line.StartsWith(";"))
+                        name = line.Substring(2);
+                        puzzle.Clear();
+                    }
+                    else if(string.IsNullOrWhiteSpace(line))
+                    {
+                        if(puzzle.Count > 0)
                         {
-                            name = line.Substring(2);
+                            ParsePuzzle(source, pack, name, puzzle);
                             puzzle.Clear();
                         }
-                        else if(string.IsNullOrWhiteSpace(line))
-                        {
-                            if(puzzle.Count > 0)
-                            {
-                                ParsePuzzle(source, pack, name, puzzle);
-                                puzzle.Clear();
-                            }
-                        }
-                        else
-                        {
-                            puzzle.Add(line);
-                        }
-                        line = file.ReadLine();
                     }
-
-                    if(puzzle.Count > 0)
+                    else
                     {
-                        ParsePuzzle(source, pack, name, puzzle);
+                        puzzle.Add(line);
                     }
+                    line = input.ReadLine();
                 }
-                catch(Exception ex)
+
+                if(puzzle.Count > 0)
                 {
-                    Console.Error.WriteLine($"Error processing file {filename}");
-                    Console.Error.WriteLine(ex);
+                    ParsePuzzle(source, pack, name, puzzle);
                 }
+            }
+            catch(Exception ex)
+            {
+                Console.Error.WriteLine($"Error processing file {filename}");
+                Console.Error.WriteLine(ex);
             }
         }
         source.WriteLine("};");
@@ -102,6 +104,7 @@ class Program
     /// <summary>Outputs one level to the console</summary
     static void OutputLevel(TextWriter source, string pack, string name, List<List<byte>> rle)
     {
+        Console.WriteLine($"Level {++Count} from {pack} level {name}");
         source.WriteLine($"    // Level {++Count} from {pack} level {name}");
         foreach(List<byte> row in rle)
         {
@@ -119,27 +122,27 @@ class Program
         int width = longestLine(puzzle);
         int height = puzzle.Count;
 
-        if(width > 16 || height > 16)
+        if(width > WIDTH || height > WIDTH)
             return null;
 
-        if(width > 8 && height > 8)
+        if(width > HEIGHT && height > HEIGHT)
             return null;
 
-        // Switch to landscape mode for the arduboy wide screen
+        // Switch to landscape mode for the wide screen
         bool rotate = height > width;
 
-        byte[,] level = new byte[8,16];
-        for(int row = 0; row < 8; row++)
+        byte[,] level = new byte[HEIGHT,WIDTH];
+        for(int row = 0; row < HEIGHT; row++)
         {
-            for(int col = 0; col < 16; col++)
+            for(int col = 0; col < WIDTH; col++)
             {
-                level[row,col] = 0x07;  // FLOOR
+                level[row,col] = 0x01;  // FLOOR
             }
         }
 
         // Center the puzzles
-        int r_off = rotate ? (8 - width) / 2 : (8 - height) / 2;
-        int c_off = rotate ? (16 - height) / 2 : (16 - width) / 2;
+        int r_off = rotate ? (HEIGHT - width) / 2 : (HEIGHT - height) / 2;
+        int c_off = rotate ? (WIDTH - height) / 2 : (WIDTH - width) / 2;
 
         int r = 0;
         foreach(string row in puzzle)
@@ -160,13 +163,13 @@ class Program
     {
         List<List<byte>> rle = new List<List<byte>>(8);
 
-        for(int row = 0; row < 8; row++)
+        for(int row = 0; row < HEIGHT; row++)
         {
             var list = new List<byte>();
             rle.Add(list);
             byte last = level[row, 0];
             byte count = 0; // Count is zero based
-            for(int col = 1; col < 16; col++)
+            for(int col = 1; col < WIDTH; col++)
             {
                 if(level[row, col] != last)
                 {
