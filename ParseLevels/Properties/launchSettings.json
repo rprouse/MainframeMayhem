@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ParseLevels": {
+      "commandName": "Project",
+      "commandLineArgs": ".\\res\\levels",
+      "workingDirectory": "C:\\Src\\Retro\\GameBoy\\MainframeMayhem\\"
+    }
+  }
+}
