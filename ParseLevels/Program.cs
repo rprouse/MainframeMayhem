@@ -195,12 +195,12 @@ class Program
     static Dictionary<char, byte> CreateTileMap() =>
         new Dictionary<char, byte>
         {
-            {' ', 0x01},    // FLOOR
-            {'#', 0x02},    // WALL
-            {'.', 0x03},    // GOAL
-            {'$', 0x04},    // BOX
-            {'*', 0x05},    // BOX_ON_GOAL
-            {'@', 0x06},    // PLAYER
-            {'+', 0x07},    // PLAYER_ON_GOAL
+            {' ', 0x00},    // FLOOR
+            {'#', 0x01},    // WALL
+            {'.', 0x02},    // GOAL
+            {'$', 0x03},    // BOX
+            {'*', 0x04},    // BOX_ON_GOAL
+            {'@', 0x05},    // PLAYER
+            {'+', 0x06},    // PLAYER_ON_GOAL
         };
 }
