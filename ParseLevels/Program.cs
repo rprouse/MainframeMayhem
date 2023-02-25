@@ -55,7 +55,7 @@ class Program
             try
             {
                 string line = input.ReadLine();
-                while(line != null)
+                while(line != null && Count < 10)
                 {
                     if(line.StartsWith(";"))
                     {
@@ -77,7 +77,7 @@ class Program
                     line = input.ReadLine();
                 }
 
-                if(puzzle.Count > 0)
+                if(puzzle.Count > 0 && Count < 10)
                 {
                     ParsePuzzle(source, pack, name, puzzle);
                 }
@@ -136,7 +136,7 @@ class Program
         {
             for(int col = 0; col < WIDTH; col++)
             {
-                level[row,col] = 0x01;  // FLOOR
+                level[row,col] = 0x00;  // FLOOR
             }
         }
 
@@ -173,7 +173,7 @@ class Program
             {
                 if(level[row, col] != last)
                 {
-                    list.Add((byte)(((int)count << 4) | (int)last));
+                    list.Add((byte)(((int)count << 3) | (int)last));
                     last = level[row, col];
                     count = 0;
                 }
@@ -182,7 +182,7 @@ class Program
                     count++;
                 }
             }
-            list.Add((byte)(((int)count << 4) | (int)last));
+            list.Add((byte)(((int)count << 3) | (int)last));
         }
         byte byteCount = (byte)rle.Sum(row => row.Count());
         rle.Insert(0, new List<byte> { byteCount });
