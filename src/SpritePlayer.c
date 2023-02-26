@@ -1,10 +1,13 @@
 #include "Banks/SetAutoBank.h"
 
-void START() {
+void START() 
+{
 }
 
-void UPDATE() {
+void UPDATE() 
+{
 }
 
-void DESTROY() {
+void DESTROY() 
+{
 }
