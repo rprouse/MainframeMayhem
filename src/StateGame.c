@@ -3,6 +3,7 @@
 #include "ZGBMain.h"
 #include "Scroll.h"
 #include "SpriteManager.h"
+#include "Keys.h"
 #include "Level.h"
 
 IMPORT_MAP(map);
@@ -16,4 +17,12 @@ void START()
 
 void UPDATE() 
 {
+  if (KEY_RELEASED(J_A))
+  {
+    NextLevel();
+  }
+  else if (KEY_RELEASED(J_B))
+  {
+    PrevLevel();
+  }
 }
