@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+#define NUM_LEVELS 10
+
 extern const UINT8 Levels[];
 
 #endif

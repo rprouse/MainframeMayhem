@@ -17,6 +17,9 @@
     <ClInclude Include="include\Levels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ZGBMain.c">
@@ -29,6 +32,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Levels.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Level.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

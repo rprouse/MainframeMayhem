@@ -15,32 +15,28 @@ class Program
 
     static void Main(string[] args)
     {
-        if(args.Length != 1 || !Directory.Exists(args[0]))
+        if (args.Length != 1 || !Directory.Exists(args[0]))
         {
             Console.WriteLine("Usage: ParseLevels <directory>");
             return;
         }
 
-        using var header = new StreamWriter(@".\include\Levels.h");
-        using var source = new StreamWriter(@".\src\Levels.c");
+        WriteSource(args[0], 10);
+        WriteHeader();
+    }
 
-        header.WriteLine("#ifndef LEVELS_H");
-        header.WriteLine("#define LEVELS_H");
-        header.WriteLine();
-        header.WriteLine("#include \"types.h\"");
-        header.WriteLine();
-        header.WriteLine("extern const UINT8 Levels[];");
-        header.WriteLine();
-        header.WriteLine("#endif");
+    private static void WriteSource(string dir, int levels)
+    {
+        using var source = new StreamWriter(@".\src\Levels.c");
 
         source.WriteLine("#include \"levels.h\"");
         source.WriteLine();
         source.WriteLine("const UINT8 Levels[] = {");
 
-        var files = Directory.GetFiles(args[0], "*.txt");
-        foreach(string filename in files)
+        var files = Directory.GetFiles(dir, "*.txt");
+        foreach (string filename in files)
         {
-            if(!File.Exists(filename))
+            if (!File.Exists(filename))
             {
                 source.WriteLine($"// Level file {filename} not found");
                 continue;
@@ -51,20 +47,20 @@ class Program
             List<string> puzzle = new List<string>();
 
             using TextReader input = new StreamReader(filename);
-             
+
             try
             {
                 string line = input.ReadLine();
-                while(line != null && Count < 10)
+                while (line != null && Count < levels)
                 {
-                    if(line.StartsWith(";"))
+                    if (line.StartsWith(";"))
                     {
                         name = line.Substring(2);
                         puzzle.Clear();
                     }
-                    else if(string.IsNullOrWhiteSpace(line))
+                    else if (string.IsNullOrWhiteSpace(line))
                     {
-                        if(puzzle.Count > 0)
+                        if (puzzle.Count > 0)
                         {
                             ParsePuzzle(source, pack, name, puzzle);
                             puzzle.Clear();
@@ -77,18 +73,33 @@ class Program
                     line = input.ReadLine();
                 }
 
-                if(puzzle.Count > 0 && Count < 10)
+                if (puzzle.Count > 0 && Count < levels)
                 {
                     ParsePuzzle(source, pack, name, puzzle);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.Error.WriteLine($"Error processing file {filename}");
                 Console.Error.WriteLine(ex);
             }
         }
         source.WriteLine("};");
+    }
+
+    private static void WriteHeader()
+    {
+        using var header = new StreamWriter(@".\include\Levels.h");
+        header.WriteLine("#ifndef LEVELS_H");
+        header.WriteLine("#define LEVELS_H");
+        header.WriteLine();
+        header.WriteLine("#include \"types.h\"");
+        header.WriteLine();
+        header.WriteLine($"#define NUM_LEVELS {Count}");
+        header.WriteLine();
+        header.WriteLine("extern const UINT8 Levels[];");
+        header.WriteLine();
+        header.WriteLine("#endif");
     }
 
     static void ParsePuzzle(TextWriter source, string pack, string name, List<string> puzzle)
@@ -105,7 +116,7 @@ class Program
     static void OutputLevel(TextWriter source, string pack, string name, List<List<byte>> rle)
     {
         Console.WriteLine($"Level {++Count} from {pack} level {name}");
-        source.WriteLine($"    // Level {++Count} from {pack} level {name}");
+        source.WriteLine($"    // Level {Count} from {pack} level {name}");
         foreach(List<byte> row in rle)
         {
             source.Write("    ");

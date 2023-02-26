@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Level.c" />
     <ClCompile Include="src\Levels.c" />
     <ClCompile Include="src\SpritePlayer.c" />
     <ClCompile Include="src\StateGame.c" />
     <ClCompile Include="src\ZGBMain.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Level.h" />
     <ClInclude Include="include\Levels.h" />
     <ClInclude Include="include\ZGBMain.h" />
   </ItemGroup>
