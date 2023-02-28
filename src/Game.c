@@ -34,6 +34,23 @@ void drawScreen()
     set_bkg_tiles(0, 0, 18, 20, board);
 }
 
+BOOLEAN isSolved()
+{
+    // Make sure all boxes are on goals
+    for (int8_t r = 0; r < ROWS; r++)
+    {
+        for (int8_t c = 0; c < COLUMNS; c++)
+        {
+            if (BOARD(r, c) == BOX)
+                return FALSE;
+        }
+    }
+    //setMoves(level, moves);
+    //arduboy.setRGBled(0, 128, 0);
+    //setRandomEncouragement();
+    return TRUE;
+}
+
 void NextLevel()
 {
     if (level < NUM_LEVELS)
@@ -93,7 +110,6 @@ void LoadLevel(int num)
 
 void Move(INT8 x, INT8 y)
 {
-
     INT8 r = pr + y;
     INT8 c = pc + x;
 
@@ -168,4 +184,9 @@ void Move(INT8 x, INT8 y)
     //    undoCount++;
 
     drawScreen();
+
+    if (isSolved() == TRUE)
+    {
+        NextLevel();
+    }
 }
