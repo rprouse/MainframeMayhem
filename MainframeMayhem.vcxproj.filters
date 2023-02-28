@@ -17,7 +17,7 @@
     <ClInclude Include="include\Levels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Level.h">
+    <ClInclude Include="include\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,7 +34,7 @@
     <ClCompile Include="src\Levels.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level.c">
+    <ClCompile Include="src\Game.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,7 +4,7 @@
 #include "Scroll.h"
 #include "SpriteManager.h"
 #include "Keys.h"
-#include "Level.h"
+#include "Game.h"
 
 IMPORT_MAP(map);
 
@@ -17,12 +17,20 @@ void START()
 
 void UPDATE() 
 {
-    if (KEY_RELEASED(J_A))
+    if (KEY_TICKED(J_UP))
     {
-        NextLevel();
+        Move(0, -1);
     }
-    else if (KEY_RELEASED(J_B))
+    else if (KEY_TICKED(J_DOWN))
     {
-        PrevLevel();
+        Move(0, 1);
+    }
+    else if (KEY_TICKED(J_RIGHT))
+    {
+        Move(1, 0);
+    }
+    else if (KEY_TICKED(J_LEFT))
+    {
+        Move(-1, 0);
     }
 }
