@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Levels.h"
 
-UINT8 board[COLUMNS * ROWS];
+UINT8 board[ROWS * COLUMNS];
 UINT8 level = 1;
 
 #define BOARD(r, c) board[r * COLUMNS + c]
@@ -31,15 +31,15 @@ void findPlayer()
 void drawScreen()
 {
     // Update the screen
-    set_bkg_tiles(0, 0, 18, 20, board);
+    set_bkg_tiles(0, 0, COLUMNS, ROWS, board);
 }
 
 BOOLEAN isSolved()
 {
     // Make sure all boxes are on goals
-    for (int8_t r = 0; r < ROWS; r++)
+    for (INT8 r = 0; r < ROWS; r++)
     {
-        for (int8_t c = 0; c < COLUMNS; c++)
+        for (INT8 c = 0; c < COLUMNS; c++)
         {
             if (BOARD(r, c) == BOX)
                 return FALSE;
@@ -73,25 +73,25 @@ void LoadLevel(int num)
         offset += levelSize + 1;
     }
 
-    UINT8 row = 0;
+    UINT8 row    = 0;
     UINT8 column = 0;
 
     for (UINT8 data = Levels[++offset]; row < ROWS; data = Levels[offset])
     {
-        if (column >= COLUMNS)
-        {
-            ++row;
-            column = 0;
-        }
-
         // Count is zero based
-        const UINT8 count = ((data >> 3) & 0x1F);
-        const UINT8 tile = ((data >> 0) & 0x07);
+        UINT8 count = data >> 3;
+        UINT8 tile = data & 0x07;
 
         for (UINT8 i = 0; i <= count; ++i)
         {
             BOARD(row, column) = tile;
-            ++column;
+            column++;
+        }
+
+        if (column >= COLUMNS)
+        {
+            ++row;
+            column = 0;
         }
 
         ++offset;

@@ -7,7 +7,7 @@ namespace ParseLevels;
 
 class Program
 {
-    const int WIDTH = 20;
+    const int WIDTH  = 20;
     const int HEIGHT = 18;
 
     static Dictionary<char, byte> TileMap { get; } = CreateTileMap();

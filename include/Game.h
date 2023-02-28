@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-#define ROWS 20
-#define COLUMNS 18
+#define ROWS    18
+#define COLUMNS 20
 
 #define FLOOR          0x00
 #define WALL           0x01
