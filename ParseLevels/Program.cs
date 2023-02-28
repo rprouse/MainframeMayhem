@@ -9,6 +9,7 @@ class Program
 {
     const int WIDTH  = 20;
     const int HEIGHT = 18;
+    const int LEVELS = 20;
 
     static Dictionary<char, byte> TileMap { get; } = CreateTileMap();
     static int Count { get; set; } = 0;
@@ -21,7 +22,7 @@ class Program
             return;
         }
 
-        WriteSource(args[0], 10);
+        WriteSource(args[0], LEVELS);
         WriteHeader();
     }
 
