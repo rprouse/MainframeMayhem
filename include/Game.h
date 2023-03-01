@@ -18,5 +18,10 @@ void NextLevel();
 void PrevLevel();
 void LoadLevel(int num);
 void Move(INT8 x, INT8 y);
+void Undo();
+void Explode();
+
+extern BOOLEAN exploded;
+extern UINT8 reset_count;
 
 #endif

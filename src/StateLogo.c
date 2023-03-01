@@ -12,6 +12,9 @@ void START()
 
     // Turn the background map on to make it visible
     SHOW_BKG;
+
+    //gotogxy(2, 3);
+    //gprintf("Press any button");
 }
 
 void UPDATE()
