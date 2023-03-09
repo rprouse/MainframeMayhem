@@ -1,0 +1,15 @@
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\bin\Debug\net7.0\ParseLevels.exe
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\bin\Debug\net7.0\ParseLevels.deps.json
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\bin\Debug\net7.0\ParseLevels.runtimeconfig.json
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\bin\Debug\net7.0\ParseLevels.dll
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\bin\Debug\net7.0\ParseLevels.pdb
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.csproj.AssemblyReference.cache
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.AssemblyInfoInputs.cache
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.AssemblyInfo.cs
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.csproj.CoreCompileInputs.cache
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.dll
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\refint\ParseLevels.dll
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.pdb
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ParseLevels.genruntimeconfig.cache
+C:\Src\Retro\GameBoy\MainframeMayhem\ParseLevels\obj\Debug\net7.0\ref\ParseLevels.dll

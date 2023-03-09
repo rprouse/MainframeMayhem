@@ -1,24 +1,23 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "gbdk",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/include",
-                "${env:ZGB_PATH}/include",
-                "${env:ZGB_PATH}/../env/gbdk/include"
+                "C:\\Users\\rob\\OneDrive\\bin\\Emulators\\gbdk\\include"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE",
-                "__PORT_gbz80"
+                "_UNICODE"
             ],
-            "windowsSdkVersion": "8.1",
-            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe",
+            "windowsSdkVersion": "10.0.22621.0",
+            "compilerPath": "cl.exe",
             "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "${default}"
+            "cppStandard": "c++14",
+            "intelliSenseMode": "${default}",
+            "compilerArgs": [],
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4

@@ -1,6 +1,7 @@
-#include "ZGBMain.h"
-#include "Game.h"
-#include "Levels.h"
+#include <gb/gb.h>
+#include <stdint.h>
+#include "game.h"
+#include "levels.h"
 
 #define FRAMES_TO_RESET      90
 #define EXPLODE_FRAMES        6
@@ -35,6 +36,12 @@ BOOLEAN exploded = FALSE;
 UINT8 moves = 0;
 
 #define BOARD(r, c) board[r * COLUMNS + c]
+
+void drawScreen()
+{
+    // Update the screen
+    set_bkg_tiles(0, 0, COLUMNS, ROWS, board);
+}
 
 // This will reset the level after FRAMES_TO_RESET of the B button being held down
 void Explode()
@@ -136,12 +143,6 @@ void findPlayer()
     }
 }
 
-void drawScreen()
-{
-    // Update the screen
-    set_bkg_tiles(0, 0, COLUMNS, ROWS, board);
-}
-
 BOOLEAN isSolved()
 {
     // Make sure all boxes are on goals
@@ -206,7 +207,7 @@ void LoadLevel(int num)
 
     findPlayer();
     //gameState = STATE_GAME_PLAY;
-    
+
     // reset
     moves = 0;
     undoCount = 0;
