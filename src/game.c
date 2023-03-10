@@ -20,20 +20,20 @@
 #define MAX_UNDO            128
 #endif
 
-UINT8 board[ROWS * COLUMNS];
-UINT8 level = 1;
+uint8_t board[ROWS * COLUMNS];
+uint8_t level = 1;
 
 // Player column and row
-INT8 pr;
-INT8 pc;
+int8_t pr;
+int8_t pc;
 
-UINT8 undoBuffer[MAX_UNDO];
-UINT8 undoCount = 0;
+uint8_t undoBuffer[MAX_UNDO];
+uint8_t undoCount = 0;
 
-UINT8 reset_count = 0;
+uint8_t reset_count = 0;
 BOOLEAN exploded = FALSE;
 
-UINT8 moves = 0;
+uint8_t moves = 0;
 
 #define BOARD(r, c) board[r * COLUMNS + c]
 
@@ -60,10 +60,10 @@ void Explode()
     //sound.tone(NOTE_C3 + reset_count, NOTE_LENGTH);
 }
 
-void undo(INT8 x, INT8 y, BOOLEAN push)
+void undo(int8_t x, int8_t y, BOOLEAN push)
 {
-    INT8 r = pr + y;
-    INT8 c = pc + x;
+    int8_t r = pr + y;
+    int8_t c = pc + x;
 
     switch (BOARD(r, c))
     {
@@ -87,8 +87,8 @@ void undo(INT8 x, INT8 y, BOOLEAN push)
     BOARD(pr, pc) = BOARD(pr, pc) == PLAYER_ON_GOAL ? GOAL : FLOOR;
 
     // Are we pulling a box?
-    INT8 br = pr - y;
-    INT8 bc = pc - x;
+    int8_t br = pr - y;
+    int8_t bc = pc - x;
     if (push && BOARD(br, bc) == BOX || BOARD(br, bc) == BOX_ON_GOAL)
     {
         //if (board[pr][pc] == GOAL)
@@ -112,7 +112,7 @@ void Undo()
     if (undoCount == 0)
         return; // No more undos left
 
-    UINT8 move = undoBuffer[moves % MAX_UNDO];
+    uint8_t move = undoBuffer[moves % MAX_UNDO];
     BOOLEAN push = (move & PUSH) == PUSH;
     if ((move & LEFT) == LEFT)
         undo(-1, 0, push);
@@ -129,9 +129,9 @@ void Undo()
 // Finds the player in the new board
 void findPlayer()
 {
-    for (UINT8 r = 0; r < ROWS; r++)
+    for (uint8_t r = 0; r < ROWS; r++)
     {
-        for (UINT8 c = 0; c < COLUMNS; c++)
+        for (uint8_t c = 0; c < COLUMNS; c++)
         {
             if (BOARD(r, c) == PLAYER || BOARD(r, c) == PLAYER_ON_GOAL)
             {
@@ -146,9 +146,9 @@ void findPlayer()
 BOOLEAN isSolved()
 {
     // Make sure all boxes are on goals
-    for (INT8 r = 0; r < ROWS; r++)
+    for (int8_t r = 0; r < ROWS; r++)
     {
-        for (INT8 c = 0; c < COLUMNS; c++)
+        for (int8_t c = 0; c < COLUMNS; c++)
         {
             if (BOARD(r, c) == BOX)
                 return FALSE;
@@ -177,20 +177,20 @@ void LoadLevel(int num)
     // skip to the level we want to load
     for (size_t i = num; i > 1; --i)
     {
-        const UINT8 levelSize = Levels[offset];
+        const uint8_t levelSize = Levels[offset];
         offset += levelSize + 1;
     }
 
-    UINT8 row    = 0;
-    UINT8 column = 0;
+    uint8_t row    = 0;
+    uint8_t column = 0;
 
-    for (UINT8 data = Levels[++offset]; row < ROWS; data = Levels[offset])
+    for (uint8_t data = Levels[++offset]; row < ROWS; data = Levels[offset])
     {
         // Count is zero based
-        UINT8 count = data >> 3;
-        UINT8 tile = data & 0x07;
+        uint8_t count = data >> 3;
+        uint8_t tile = data & 0x07;
 
-        for (UINT8 i = 0; i <= count; ++i)
+        for (uint8_t i = 0; i <= count; ++i)
         {
             BOARD(row, column) = tile;
             column++;
@@ -219,10 +219,10 @@ void LoadLevel(int num)
     drawScreen();
 }
 
-void Move(INT8 x, INT8 y)
+void Move(int8_t x, int8_t y)
 {
-    INT8 r = pr + y;
-    INT8 c = pc + x;
+    int8_t r = pr + y;
+    int8_t c = pc + x;
 
     if (r == -1 || r == ROWS || c == -1 || c == COLUMNS)
     {
@@ -248,8 +248,8 @@ void Move(INT8 x, INT8 y)
     case BOX_ON_GOAL:
         {
             // Need to look one square further then push box
-            INT8 r2 = r + y;
-            INT8 c2 = c + x;
+            int8_t r2 = r + y;
+            int8_t c2 = c + x;
 
             if (r2 == -1 || r2 == ROWS || c2 == -1 || c2 == COLUMNS ||
                 BOARD(r2, c2) == WALL ||

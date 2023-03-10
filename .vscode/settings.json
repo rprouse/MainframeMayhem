@@ -1,5 +1,11 @@
 {
   "files.exclude": {
     "**/obj": true
+  },
+  "files.associations": {
+    "*.config": "xml",
+    "*.saproj": "xml",
+    "*.build": "xml",
+    "stdint.h": "c"
   }
 }
