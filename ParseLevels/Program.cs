@@ -32,7 +32,7 @@ class Program
 
         source.WriteLine("#include \"levels.h\"");
         source.WriteLine();
-        source.WriteLine("const UINT8 Levels[] = {");
+        source.WriteLine("const uint8_t Levels[] = {");
 
         var files = Directory.GetFiles(dir, "*.txt");
         foreach (string filename in files)
@@ -98,7 +98,7 @@ class Program
         header.WriteLine();
         header.WriteLine($"#define NUM_LEVELS {Count}");
         header.WriteLine();
-        header.WriteLine("extern const UINT8 Levels[];");
+        header.WriteLine("extern const uint8_t Levels[];");
         header.WriteLine();
         header.WriteLine("#endif");
     }

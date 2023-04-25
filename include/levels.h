@@ -5,6 +5,6 @@
 
 #define NUM_LEVELS 20
 
-extern const UINT8 Levels[];
+extern const uint8_t Levels[];
 
 #endif

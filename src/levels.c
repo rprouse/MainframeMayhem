@@ -1,6 +1,8 @@
+
+#include <stdint.h>
 #include "levels.h"
 
-const UINT8 Levels[] = {
+const uint8_t Levels[] = {
     // Level 1 from Microban II level 1
     0x2C,
     0x98,

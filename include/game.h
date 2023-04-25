@@ -17,11 +17,11 @@
 void NextLevel();
 void PrevLevel();
 void LoadLevel(int num);
-void Move(INT8 x, INT8 y);
+void Move(int8_t x, int8_t y);
 void Undo();
 void Explode();
 
 extern BOOLEAN exploded;
-extern UINT8 reset_count;
+extern uint8_t reset_count;
 
 #endif
