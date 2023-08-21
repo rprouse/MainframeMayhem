@@ -6,20 +6,21 @@
 #include <stdint.h>
 #include "global.h"
 
-#define PRINT_POS(X, Y) print_x = X; print_y  = Y
-
 void endScreenInit() {
-    DISPLAY_OFF;
-    HIDE_BKG;
 
-    fill_rect(0, 0 , 20, 18, 0);
+    HIDE_SPRITES, HIDE_WIN, SHOW_BKG;
+    DISPLAY_ON;
+
+    // Use the 8800 tileset
+    LCDC_REG |= LCDCF_BG8800;
+
+    init_bkg(0);
 
     font_init();
     font_set(font_load(font_ibm));
-    printf("\n\n\n\n\n  Game Over!");
 
-    SHOW_BKG;
-    DISPLAY_ON;
+    gotoxy(5, 8);
+    printf("Game Over!");
 }
 
 void endScreenUpdate() {

@@ -8,6 +8,9 @@ void gameScreenInit() {
     DISPLAY_OFF;
     HIDE_BKG;
 
+    // Use the 8000 tileset
+    LCDC_REG |= LCDCF_BG8000;
+
     // Load Background tiles and then load the map
     set_bkg_data(0, TileLen, Tile);
     LoadLevel(1);

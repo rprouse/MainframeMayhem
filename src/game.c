@@ -175,7 +175,7 @@ void LoadLevel(int num)
 {
     int offset = 0;
     // skip to the level we want to load
-    for (size_t i = num; i > 1; --i)
+    for (uint8_t i = num; i > 1; --i)
     {
         const uint8_t levelSize = Levels[offset];
         offset += levelSize + 1;

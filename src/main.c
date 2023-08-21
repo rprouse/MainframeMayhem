@@ -1,5 +1,6 @@
 #include <gb/gb.h>
 #include <stdint.h>
+#include <gbdk/font.h>
 #include "global.h"
 #include "logoState.h"
 #include "gameState.h"
