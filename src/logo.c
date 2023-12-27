@@ -6,6 +6,10 @@
 
 BANKREF(Logo)
 
+const palette_color_t Logo_palettes[4] = {
+	RGB8(236,229,206), RGB8(131,175,155), RGB8(243,134, 48), RGB8( 11, 72,107)
+};
+
 const uint8_t Logo_tiles[1424] = {
 	0x00,0x00,0x00,0x00,
 	0x00,0x00,0x00,0x00,

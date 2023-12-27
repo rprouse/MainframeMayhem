@@ -9,6 +9,8 @@ void logoScreenInit() {
     LCDC_REG |= LCDCF_BG8000;
 
     // Load Background tiles and then map
+    // Load Background tiles and then map
+    set_bkg_palette( 0, 1, Logo_palettes);
     set_bkg_data(0, Logo_TILE_COUNT, Logo_tiles);
     set_bkg_tiles(0, 0, 20u, 18u, Logo_map);
 
