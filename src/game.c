@@ -93,7 +93,7 @@ void undo(int8_t x, int8_t y, bool push)
 
     // Set the board based on where the player WAS
     BOARD(pr, pc) = BOARD(pr, pc) == PLAYER_ON_GOAL ? GOAL : FLOOR;
-    ATTR(pr, pc) = ATTR(pr, pc) == palette[PLAYER_ON_GOAL] ? palette[GOAL] : palette[FLOOR];
+    ATTR(pr, pc) = palette[BOARD(pr, pc)];
 
     // Are we pulling a box?
     int8_t br = pr - y;
@@ -107,9 +107,11 @@ void undo(int8_t x, int8_t y, bool push)
 
         // Pull the box
         BOARD(pr, pc) = BOARD(pr, pc) == GOAL ? BOX_ON_GOAL : BOX;
+        ATTR(pr, pc) = palette[BOARD(pr, pc)];
+
+        // Clear the spot where the box was
         BOARD(br, bc) = BOARD(br, bc) == BOX_ON_GOAL ? GOAL : FLOOR;
-        ATTR(pr, pc) = ATTR(pr, pc) == palette[GOAL] ? palette[BOX_ON_GOAL] : palette[BOX];
-        ATTR(br, bc) = ATTR(br, bc) == palette[BOX_ON_GOAL] ? palette[GOAL] : palette[FLOOR];
+        ATTR(br, bc) = palette[BOARD(br, bc)];
     }
 
     pr = r;
@@ -242,6 +244,7 @@ void Move(int8_t x, int8_t y)
         return;
     }
 
+    // Determine what we are moving into
     switch (BOARD(r, c))
     {
     case FLOOR:
@@ -262,7 +265,7 @@ void Move(int8_t x, int8_t y)
     case BOX:
     case BOX_ON_GOAL:
         {
-            // Need to look one square further then push box
+            // Need to look one square further when we push box
             int8_t r2 = r + y;
             int8_t c2 = c + x;
 
@@ -282,22 +285,24 @@ void Move(int8_t x, int8_t y)
 
             // Push the box
             BOARD(r2, c2) = BOARD(r2, c2) == GOAL ? BOX_ON_GOAL : BOX;
-            BOARD(r, c) = BOARD(r, c) == BOX_ON_GOAL ? PLAYER_ON_GOAL : PLAYER;
+            ATTR(r2, c2) = palette[BOARD(r2, c2)];
 
-            ATTR(r2, c2) = ATTR(r2, c2) == palette[GOAL] ? palette[BOX_ON_GOAL] : palette[BOX];
-            ATTR(r, c) = ATTR(r, c) == palette[BOX_ON_GOAL] ? palette[PLAYER_ON_GOAL] : palette[PLAYER];
+            // Move the player
+            BOARD(r, c) = BOARD(r, c) == BOX_ON_GOAL ? PLAYER_ON_GOAL : PLAYER;
+            ATTR(r, c) = palette[BOARD(r, c)];
+
             moves++;
             undoBuffer[moves % MAX_UNDO] = PUSH;
         }
         break;
-    case WALL:
+    case WALL:  // This should never happen! It should be caught above
     default:
         return;
     }
 
     // Set the board based on where the player WAS
     BOARD(pr, pc) = BOARD(pr, pc) == PLAYER_ON_GOAL ? GOAL : FLOOR;
-    ATTR(pr, pc) = ATTR(pr, pc) == palette[PLAYER_ON_GOAL] ? palette[GOAL] : palette[FLOOR];
+    ATTR(pr, pc) = palette[BOARD(pr, pc)];
     pr = r;
     pc = c;
 

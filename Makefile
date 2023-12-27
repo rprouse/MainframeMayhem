@@ -21,7 +21,7 @@ GBEMU = $(TOOLS_ROOT)bgb/bgb64
 # You can set flags for LCC here
 # For example, you can uncomment the line below to turn on debug output
 # LCCFLAGS = -debug
-LCCFLAGS = -Wa-l -Wl-m
+LCCFLAGS = -Wa-l -Wl-m -Wl-j
 CFLAGS = -Wf-Iinclude -Wf-Ires -Wf-MMD
 
 # You can set the name of the .gb ROM file here
