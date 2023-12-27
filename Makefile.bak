@@ -54,9 +54,9 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.s
 $(OBJDIR)/%.s:	$(SRCDIR)/%.c
 	$(LCC) $(LCCFLAGS) $(CFLAGS) -S -o $@ $<
 
-# Link the compiled object files into a .gbc ROM file
+# Link the compiled object files into a .gb ROM file
 $(BINS):	$(OBJS)
-	$(LCC) $(LCCFLAGS) -Wm-yC -o $(BINS) $(OBJS)
+	$(LCC) $(LCCFLAGS) -o $(BINS) $(OBJS)
 
 run:	$(BINS)
 	$(GBEMU) --rom $(BINS)

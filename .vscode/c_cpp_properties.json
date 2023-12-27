@@ -4,7 +4,7 @@
             "name": "gbdk",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\Users\\rob\\OneDrive\\bin\\Emulators\\gbdk\\include"
+                "C:/Users/rob/OneDrive/bin/Emulators/gbdk/include"
             ],
             "defines": [
                 "_DEBUG",
