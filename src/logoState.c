@@ -3,7 +3,7 @@
 #include "global.h"
 #include "logo.h"
 
-void logoScreenInit() {
+void logoScreenInit(void) {
 
     // Use the 8000 tileset
     LCDC_REG |= LCDCF_BG8000;
@@ -20,7 +20,7 @@ void logoScreenInit() {
     DISPLAY_ON;
 }
 
-void logoScreenUpdate() {
+void logoScreenUpdate(void) {
     UPDATE_KEYS();
 
     if (KEY_TICKED(J_START)) {

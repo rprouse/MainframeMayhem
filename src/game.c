@@ -1,5 +1,6 @@
 #include <gb/gb.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include "game.h"
 #include "levels.h"
 
@@ -34,14 +35,14 @@ uint8_t undoBuffer[MAX_UNDO];
 uint8_t undoCount = 0;
 
 uint8_t reset_count = 0;
-BOOLEAN exploded = FALSE;
+bool exploded = false;
 
 uint8_t moves = 0;
 
 #define BOARD(r, c) board[r * COLUMNS + c]
 #define ATTR(r, c) attr[r * COLUMNS + c]
 
-void drawScreen()
+void drawScreen(void)
 {
     // Update the screen
     set_bkg_tiles(0, 0, COLUMNS, ROWS, board);
@@ -49,7 +50,7 @@ void drawScreen()
 }
 
 // This will reset the level after FRAMES_TO_RESET of the B button being held down
-void Explode()
+void Explode(void)
 {
     if (exploded) return;
 
@@ -57,7 +58,7 @@ void Explode()
     if (reset_count > FRAMES_TO_RESET)
     {
         //gameState = STATE_LEVEL_INIT;
-        exploded = TRUE;
+        exploded = true;
         reset_count = 0;
         return;
     }
@@ -65,7 +66,7 @@ void Explode()
     //sound.tone(NOTE_C3 + reset_count, NOTE_LENGTH);
 }
 
-void undo(int8_t x, int8_t y, BOOLEAN push)
+void undo(int8_t x, int8_t y, bool push)
 {
     int8_t r = pr + y;
     int8_t c = pc + x;
@@ -117,13 +118,13 @@ void undo(int8_t x, int8_t y, BOOLEAN push)
     undoCount--;
 }
 
-void Undo()
+void Undo(void)
 {
     if (undoCount == 0)
         return; // No more undos left
 
     uint8_t move = undoBuffer[moves % MAX_UNDO];
-    BOOLEAN push = (move & PUSH) == PUSH;
+    bool push = (move & PUSH) == PUSH;
     if ((move & LEFT) == LEFT)
         undo(-1, 0, push);
     else if ((move & RIGHT) == RIGHT)
@@ -137,7 +138,7 @@ void Undo()
 }
 
 // Finds the player in the new board
-void findPlayer()
+void findPlayer(void)
 {
     for (uint8_t r = 0; r < ROWS; r++)
     {
@@ -153,7 +154,7 @@ void findPlayer()
     }
 }
 
-BOOLEAN isSolved()
+bool isSolved(void)
 {
     // Make sure all boxes are on goals
     for (int8_t r = 0; r < ROWS; r++)
@@ -161,29 +162,29 @@ BOOLEAN isSolved()
         for (int8_t c = 0; c < COLUMNS; c++)
         {
             if (BOARD(r, c) == BOX)
-                return FALSE;
+                return false;
         }
     }
     //setMoves(level, moves);
     //setRandomEncouragement();
-    return TRUE;
+    return true;
 }
 
-void NextLevel()
+void NextLevel(void)
 {
     if (level < NUM_LEVELS)
         LoadLevel(++level);
 }
 
-void PrevLevel()
+void PrevLevel(void)
 {
     if (level > 1)
         LoadLevel(--level);
 }
 
-void LoadLevel(int num)
+void LoadLevel(uint8_t num)
 {
-    int offset = 0;
+    uint8_t offset = 0;
     // skip to the level we want to load
     for (uint8_t i = num; i > 1; --i)
     {
@@ -314,7 +315,7 @@ void Move(int8_t x, int8_t y)
 
     drawScreen();
 
-    if (isSolved() == TRUE)
+    if (isSolved() == true)
     {
         NextLevel();
     }

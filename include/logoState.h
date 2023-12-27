@@ -1,7 +1,7 @@
 #ifndef LOGO_STATE_H
 #define LOGO_STATE_H
 
-void logoScreenInit();
-void logoScreenUpdate();
+void logoScreenInit(void);
+void logoScreenUpdate(void);
 
 #endif

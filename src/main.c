@@ -6,7 +6,7 @@
 #include "gameState.h"
 #include "endState.h"
 
-typedef void (*FunctionPointer)();
+typedef void (*FunctionPointer)(void);
 
 const FunctionPointer gameInitStates[] = {
     logoScreenInit,

@@ -19,9 +19,6 @@
 #define GS_GAME                 1
 #define GS_END                  2
 
-#define FALSE                   0
-#define TRUE                    1
-
 //game state
 extern uint8_t game_state;
 

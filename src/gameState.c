@@ -1,5 +1,6 @@
 #include <gb/gb.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include "global.h"
 #include "tiles.h"
 #include "game.h"
@@ -15,7 +16,7 @@ const palette_color_t palettes[32] = {
     TileCGBPal7c0, TileCGBPal7c1, TileCGBPal7c2, TileCGBPal7c3,
 };
 
-void gameScreenInit() {
+void gameScreenInit(void) {
     DISPLAY_OFF;
     HIDE_BKG;
 
@@ -32,7 +33,7 @@ void gameScreenInit() {
     DISPLAY_ON;
 }
 
-void gameScreenUpdate() {
+void gameScreenUpdate(void) {
     UPDATE_KEYS();
 
     if (KEY_TICKED(J_A))
@@ -40,7 +41,7 @@ void gameScreenUpdate() {
     else if (KEY_PRESSED(J_B))
         Explode();
     else if (KEY_RELEASED(J_B)) {
-        exploded = FALSE;
+        exploded = false;
         reset_count = 0;
     }
     else if (KEY_TICKED(J_START)) {

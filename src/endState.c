@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include "global.h"
 
-void endScreenInit() {
+void endScreenInit(void) {
 
     HIDE_SPRITES, HIDE_WIN, SHOW_BKG;
     DISPLAY_ON;
@@ -23,7 +23,7 @@ void endScreenInit() {
     printf("Game Over!");
 }
 
-void endScreenUpdate() {
+void endScreenUpdate(void) {
     UPDATE_KEYS();
 
     if (KEY_TICKED(J_START)) {

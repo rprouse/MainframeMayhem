@@ -1,7 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "types.h"
+#include <stdint.h>
+#include <stdbool.h>
 
 #define ROWS    18
 #define COLUMNS 20
@@ -14,14 +15,14 @@
 #define PLAYER         0x05
 #define PLAYER_ON_GOAL 0x06
 
-void NextLevel();
-void PrevLevel();
-void LoadLevel(int num);
+void NextLevel(void);
+void PrevLevel(void);
+void LoadLevel(uint8_t num);
 void Move(int8_t x, int8_t y);
-void Undo();
-void Explode();
+void Undo(void);
+void Explode(void);
 
-extern BOOLEAN exploded;
+extern bool exploded;
 extern uint8_t reset_count;
 
 #endif
