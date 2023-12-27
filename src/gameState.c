@@ -1,4 +1,5 @@
 #include <gb/gb.h>
+#include <gb/cgb.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include "global.h"

@@ -2,6 +2,7 @@
 #ifndef METASPRITE_logo_H
 #define METASPRITE_logo_H
 
+#include <gb/cgb.h>
 #include <stdint.h>
 #include <gbdk/platform.h>
 #include <gbdk/metasprites.h>
