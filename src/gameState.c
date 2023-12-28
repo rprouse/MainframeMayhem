@@ -5,6 +5,7 @@
 #include "global.h"
 #include "tiles.h"
 #include "game.h"
+#include "utilities.h"
 
 const palette_color_t palettes[32] = {
     TileCGBPal0c0, TileCGBPal0c1, TileCGBPal0c2, TileCGBPal0c3,

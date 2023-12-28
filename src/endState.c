@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "global.h"
+#include "game.h"
+#include "utilities.h"
 
 void endScreenInit(void) {
 
@@ -13,6 +15,8 @@ void endScreenInit(void) {
 
     // Use the 8800 tileset
     LCDC_REG |= LCDCF_BG8800;
+
+    reset_bkg_attributes(COLUMNS, ROWS);
 
     init_bkg(0);
 
