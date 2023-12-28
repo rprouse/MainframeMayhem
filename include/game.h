@@ -20,9 +20,7 @@ void PrevLevel(void);
 void LoadLevel(uint8_t num);
 void Move(int8_t x, int8_t y);
 void Undo(void);
-void Explode(void);
 
-extern bool exploded;
-extern uint8_t reset_count;
+extern uint8_t level;
 
 #endif

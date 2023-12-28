@@ -4,9 +4,6 @@
 #include "game.h"
 #include "levels.h"
 
-#define FRAMES_TO_RESET      90
-#define EXPLODE_FRAMES        6
-
 // Undo buffer defines
 #define UP      0x01
 #define DOWN    0x02
@@ -34,9 +31,6 @@ int8_t pc;
 uint8_t undoBuffer[MAX_UNDO];
 uint8_t undoCount = 0;
 
-uint8_t reset_count = 0;
-bool exploded = false;
-
 uint8_t moves = 0;
 
 #define BOARD(r, c) board[r * COLUMNS + c]
@@ -47,23 +41,6 @@ void drawScreen(void)
     // Update the screen
     set_bkg_tiles(0, 0, COLUMNS, ROWS, board);
     set_bkg_attributes(0, 0, COLUMNS, ROWS, attr);
-}
-
-// This will reset the level after FRAMES_TO_RESET of the B button being held down
-void Explode(void)
-{
-    if (exploded) return;
-
-    reset_count++;
-    if (reset_count > FRAMES_TO_RESET)
-    {
-        //gameState = STATE_LEVEL_INIT;
-        exploded = true;
-        reset_count = 0;
-        return;
-    }
-
-    //sound.tone(NOTE_C3 + reset_count, NOTE_LENGTH);
 }
 
 void undo(int8_t x, int8_t y, bool push)
@@ -225,7 +202,6 @@ void LoadLevel(uint8_t num)
     // reset
     moves = 0;
     undoCount = 0;
-    reset_count = 0;
 
     //setLevel(level);
     //bestScore = getMoves(level);

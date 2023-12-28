@@ -28,7 +28,7 @@ void gameScreenInit(void) {
     // Load Background tiles and then load the map
     set_bkg_palette(0, 8, palettes);
     set_bkg_data(0, TileLen, Tile);
-    LoadLevel(1);
+    LoadLevel(level);
 
     // Turn the background map on to make it visible
     SHOW_BKG;
@@ -41,24 +41,16 @@ void gameScreenUpdate(void) {
     if (KEY_TICKED(J_A))
         Undo();
     else if (KEY_PRESSED(J_B))
-        Explode();
-    else if (KEY_RELEASED(J_B)) {
-        exploded = false;
-        reset_count = 0;
-    }
-    else if (KEY_TICKED(J_START)) {
+        LoadLevel(level);
+    else if (KEY_TICKED(J_START))
         game_state = GS_END;
-    }
-    if (KEY_TICKED(J_UP)) {
+
+    if (KEY_TICKED(J_UP))
         Move(0, -1);
-    }
-    else if (KEY_TICKED(J_DOWN)) {
+    else if (KEY_TICKED(J_DOWN))
         Move(0, 1);
-    }
-    else if (KEY_TICKED(J_RIGHT)) {
+    else if (KEY_TICKED(J_RIGHT))
         Move(1, 0);
-    }
-    else if (KEY_TICKED(J_LEFT)) {
+    else if (KEY_TICKED(J_LEFT))
         Move(-1, 0);
-    }
 }
