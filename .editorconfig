@@ -25,6 +25,10 @@ indent_size = 4
 curly_bracket_next_line = true
 indent_brace_style = Allman
 
+# C# Files
+[*.cs]
+indent_size = 4
+
 # Shell scripts
 [*.sh]
 end_of_line = lf

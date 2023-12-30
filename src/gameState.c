@@ -5,6 +5,7 @@
 #include "global.h"
 #include "tiles.h"
 #include "game.h"
+#include "levels.h"
 #include "utilities.h"
 
 const palette_color_t palettes[32] = {
@@ -44,6 +45,15 @@ void gameScreenUpdate(void) {
         LoadLevel(level);
     else if (KEY_TICKED(J_START))
         game_state = GS_END;
+    else if (KEY_TICKED(J_SELECT))
+    {
+        if (level < NUM_LEVELS)
+            level++;
+        else
+            level = 1;
+
+        LoadLevel(level);
+    }
 
     if (KEY_TICKED(J_UP))
         Move(0, -1);

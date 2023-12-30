@@ -3,7 +3,7 @@
     "ParseLevels": {
       "commandName": "Project",
       "commandLineArgs": ".\\res\\levels",
-      "workingDirectory": "C:\\Src\\Retro\\GameBoy\\MainframeMayhem\\"
+      "workingDirectory": "D:\\Src\\Retro\\GameBoy\\MainframeMayhem\\"
     }
   }
 }

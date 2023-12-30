@@ -30,6 +30,8 @@ class Program
     {
         using var source = new StreamWriter(@".\src\Levels.c");
 
+        source.WriteLine("#pragma bank 2");
+        source.WriteLine();
         source.WriteLine("#include \"levels.h\"");
         source.WriteLine();
         source.WriteLine("const uint8_t Levels[] = {");
@@ -94,7 +96,7 @@ class Program
         header.WriteLine("#ifndef LEVELS_H");
         header.WriteLine("#define LEVELS_H");
         header.WriteLine();
-        header.WriteLine("#include \"types.h\"");
+        header.WriteLine("#include <stdint.h>");
         header.WriteLine();
         header.WriteLine($"#define NUM_LEVELS {Count}");
         header.WriteLine();
@@ -123,7 +125,7 @@ class Program
             source.Write("    ");
             foreach(byte b in row)
             {
-                source.Write($"0x{b:X2}, ");
+                source.Write($"0x{b:X2},");
             }
             source.WriteLine();
         }

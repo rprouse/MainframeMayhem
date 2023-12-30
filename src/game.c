@@ -163,6 +163,9 @@ void PrevLevel(void)
 
 void LoadLevel(uint8_t num)
 {
+    uint8_t current_bank = CURRENT_BANK;
+    SWITCH_ROM_MBC5(2);
+
     uint8_t offset = 0;
     // skip to the level we want to load
     for (uint8_t i = num; i > 1; --i)
@@ -195,6 +198,8 @@ void LoadLevel(uint8_t num)
 
         ++offset;
     }
+
+    SWITCH_ROM_MBC5(current_bank);
 
     findPlayer();
     //gameState = STATE_GAME_PLAY;

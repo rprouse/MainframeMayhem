@@ -56,7 +56,7 @@ $(OBJDIR)/%.s:	$(SRCDIR)/%.c
 
 # Link the compiled object files into a .gbc ROM file
 $(BINS):	$(OBJS)
-	$(LCC) $(LCCFLAGS) -Wm-yC -o $(BINS) $(OBJS)
+	$(LCC) $(LCCFLAGS) -Wm-yC -Wm-yoA -Wm-ya4 -Wm-yt0x1B -o $(BINS) $(OBJS)
 
 run:	$(BINS)
 	$(GBEMU) --rom $(BINS)
