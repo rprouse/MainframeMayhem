@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define NUM_LEVELS 20
+#define NUM_LEVELS 255
 
 extern const uint8_t Levels[];
 

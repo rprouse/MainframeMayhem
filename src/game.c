@@ -166,12 +166,11 @@ void LoadLevel(uint8_t num)
     uint8_t current_bank = CURRENT_BANK;
     SWITCH_ROM_MBC5(2);
 
-    uint8_t offset = 0;
+    uint16_t offset = 0;
     // skip to the level we want to load
     for (uint8_t i = num; i > 1; --i)
     {
-        const uint8_t levelSize = Levels[offset];
-        offset += levelSize + 1;
+        offset += Levels[offset] + 1;
     }
 
     uint8_t row    = 0;
