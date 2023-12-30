@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "game.h"
 #include "levels.h"
+#include "tiles.h"
 
 // Undo buffer defines
 #define UP      0x01
@@ -17,8 +18,6 @@
 #else
 #define MAX_UNDO            128
 #endif
-
-uint8_t palette[7] = { 0x00, 0x01, 0x03, 0x01, 0x01, 0x00, 0x04 };
 
 uint8_t board[ROWS * COLUMNS];  // The game board map
 uint8_t attr[ROWS * COLUMNS];   // The game board attributes
@@ -52,13 +51,13 @@ void undo(int8_t x, int8_t y, bool push)
     {
     case FLOOR:
         BOARD(r, c) = PLAYER;
-        ATTR(r, c) = palette[PLAYER];
+        ATTR(r, c) = TileCGB[PLAYER];
         //sound.tone(NOTE_C3, NOTE_LENGTH);
         break;
     case GOAL:
         //sound.tone(NOTE_E3, NOTE_LENGTH);
         BOARD(r, c) = PLAYER_ON_GOAL;
-        ATTR(r, c) = palette[PLAYER_ON_GOAL];
+        ATTR(r, c) = TileCGB[PLAYER_ON_GOAL];
         break;
     case WALL:
     case BOX:
@@ -70,7 +69,7 @@ void undo(int8_t x, int8_t y, bool push)
 
     // Set the board based on where the player WAS
     BOARD(pr, pc) = BOARD(pr, pc) == PLAYER_ON_GOAL ? GOAL : FLOOR;
-    ATTR(pr, pc) = palette[BOARD(pr, pc)];
+    ATTR(pr, pc) = TileCGB[BOARD(pr, pc)];
 
     // Are we pulling a box?
     int8_t br = pr - y;
@@ -84,11 +83,11 @@ void undo(int8_t x, int8_t y, bool push)
 
         // Pull the box
         BOARD(pr, pc) = BOARD(pr, pc) == GOAL ? BOX_ON_GOAL : BOX;
-        ATTR(pr, pc) = palette[BOARD(pr, pc)];
+        ATTR(pr, pc) = TileCGB[BOARD(pr, pc)];
 
         // Clear the spot where the box was
         BOARD(br, bc) = BOARD(br, bc) == BOX_ON_GOAL ? GOAL : FLOOR;
-        ATTR(br, bc) = palette[BOARD(br, bc)];
+        ATTR(br, bc) = TileCGB[BOARD(br, bc)];
     }
 
     pr = r;
@@ -185,7 +184,7 @@ void LoadLevel(uint8_t num)
         for (uint8_t i = 0; i <= count; ++i)
         {
             BOARD(row, column) = tile;
-            ATTR(row, column) = palette[tile];
+            ATTR(row, column) = TileCGB[tile];
             column++;
         }
 
@@ -229,7 +228,7 @@ void Move(int8_t x, int8_t y)
     {
     case FLOOR:
         BOARD(r, c) = PLAYER;
-        ATTR(r, c) = palette[PLAYER];
+        ATTR(r, c) = TileCGB[PLAYER];
         //sound.tone(NOTE_C3, NOTE_LENGTH);
         moves++;
         undoBuffer[moves % MAX_UNDO] = MOVE;
@@ -237,7 +236,7 @@ void Move(int8_t x, int8_t y)
     case GOAL:
         //sound.tone(NOTE_E3, NOTE_LENGTH);
         BOARD(r, c) = PLAYER_ON_GOAL;
-        ATTR(r, c) = palette[PLAYER_ON_GOAL];
+        ATTR(r, c) = TileCGB[PLAYER_ON_GOAL];
 
         moves++;
         undoBuffer[moves % MAX_UNDO] = MOVE;
@@ -265,11 +264,11 @@ void Move(int8_t x, int8_t y)
 
             // Push the box
             BOARD(r2, c2) = BOARD(r2, c2) == GOAL ? BOX_ON_GOAL : BOX;
-            ATTR(r2, c2) = palette[BOARD(r2, c2)];
+            ATTR(r2, c2) = TileCGB[BOARD(r2, c2)];
 
             // Move the player
             BOARD(r, c) = BOARD(r, c) == BOX_ON_GOAL ? PLAYER_ON_GOAL : PLAYER;
-            ATTR(r, c) = palette[BOARD(r, c)];
+            ATTR(r, c) = TileCGB[BOARD(r, c)];
 
             moves++;
             undoBuffer[moves % MAX_UNDO] = PUSH;
@@ -282,7 +281,7 @@ void Move(int8_t x, int8_t y)
 
     // Set the board based on where the player WAS
     BOARD(pr, pc) = BOARD(pr, pc) == PLAYER_ON_GOAL ? GOAL : FLOOR;
-    ATTR(pr, pc) = palette[BOARD(pr, pc)];
+    ATTR(pr, pc) = TileCGB[BOARD(pr, pc)];
     pr = r;
     pc = c;
 
