@@ -16,4 +16,10 @@
 // Resets all background attributes from 0,0 to w,h to 0
 void reset_bkg_attributes(uint8_t w, uint8_t h);
 
+void InitSavedState(void);
+uint8_t GetSavedLevel(void);
+void SetSavedLevel(uint8_t level);
+uint8_t GetSavedMoves(uint8_t level);
+void SetSavedMoves(uint8_t level, uint8_t moves);
+
 #endif

@@ -5,6 +5,7 @@
 #include "global.h"
 #include "levels.h"
 #include "tiles.h"
+#include "utilities.h"
 
 // Undo buffer defines
 #define UP      0x01
@@ -304,5 +305,11 @@ void Move(int8_t x, int8_t y)
     {
         //NextLevel();
         game_state = GS_NEXT_LEVEL;
+        SetSavedLevel(level);
+        uint8_t m = GetSavedMoves(level);
+        if (m == 0 || m > moves)
+        {
+            SetSavedMoves(level, moves);
+        }
     }
 }

@@ -26,8 +26,10 @@ void nextLevelScreenInit(void) {
 
     gotoxy(1, 7);
     printf("Level %d complete", level);
-    gotoxy(5, 8);
+    gotoxy(4, 8);
     printf("Moves: %d", moves);
+    gotoxy(5, 9);
+    printf("Best: %d", GetSavedMoves(level));
     gotoxy(4, 13);
     printf("A next level");
     gotoxy(4, 14);

@@ -39,7 +39,8 @@ all:	prepare $(BINS) run
 
 # Compile .c files in "src/" to .o object files
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
-	$(LCC) $(LCCFLAGS) $(CFLAGS) -c -o $@ $<
+	$(eval BAFLAG = $(shell echo "$<" | sed -n 's/.*\.ba\([0-9]\+\).*/\-Wf-ba\1/p'))
+	$(LCC) $(LCCFLAGS) $(CFLAGS) $(BAFLAG) -c -o $@ $<
 
 # Compile .c files in "res/" to .o object files
 $(OBJDIR)/%.o:	$(RESDIR)/%.c
