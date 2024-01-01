@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "game.h"
+#include "global.h"
 #include "levels.h"
 #include "tiles.h"
 
@@ -301,6 +302,7 @@ void Move(int8_t x, int8_t y)
 
     if (isSolved() == true)
     {
-        NextLevel();
+        //NextLevel();
+        game_state = GS_NEXT_LEVEL;
     }
 }

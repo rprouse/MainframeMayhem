@@ -22,5 +22,6 @@ void Move(int8_t x, int8_t y);
 void Undo(void);
 
 extern uint8_t level;
+extern uint8_t moves;
 
 #endif

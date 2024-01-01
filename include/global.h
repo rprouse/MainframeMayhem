@@ -7,7 +7,8 @@
 #define GS_NONE                99
 #define GS_LOGO                 0
 #define GS_GAME                 1
-#define GS_END                  2
+#define GS_NEXT_LEVEL           2
+#define GS_END                  3
 
 //game state
 extern uint8_t game_state;

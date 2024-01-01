@@ -4,6 +4,7 @@
 #include "global.h"
 #include "logoState.h"
 #include "gameState.h"
+#include "nextLevelState.h"
 #include "endState.h"
 
 typedef void (*FunctionPointer)(void);
@@ -11,12 +12,14 @@ typedef void (*FunctionPointer)(void);
 const FunctionPointer gameInitStates[] = {
     logoScreenInit,
     gameScreenInit,
+    nextLevelScreenInit,
     endScreenInit
 };
 
 const FunctionPointer gameUpdateStates[] = {
     logoScreenUpdate,
     gameScreenUpdate,
+    nextLevelScreenUpdate,
     endScreenUpdate
 };
 

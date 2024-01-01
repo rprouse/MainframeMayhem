@@ -43,8 +43,6 @@ void gameScreenUpdate(void) {
         Undo();
     else if (KEY_PRESSED(J_B))
         LoadLevel(level);
-    else if (KEY_TICKED(J_START))
-        game_state = GS_END;
     else if (KEY_TICKED(J_SELECT))
     {
         if (level < NUM_LEVELS)
