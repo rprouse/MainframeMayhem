@@ -1,6 +1,5 @@
 # Mainframe Mayhem Storyline
 
-
 Welcome Spark! You are the dedicated repair bot of the Quantum Apex mainframe.
 Your mission: ensure seamless operation and maintain the flow of data.
 
