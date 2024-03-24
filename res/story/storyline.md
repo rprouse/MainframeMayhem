@@ -1,20 +1,18 @@
 # Mainframe Mayhem Storyline
 
-Hello Spark, you are the trusty computer repair bot for the Quantum Apex
-mainframe computer. Your job is to keep the computer in good repair and the
-bits flowing freely.
 
-There has been a disaster in mainframe land. A massive earthquake has shaken
-many of the chips out of their sockets. All systems are offline and the data
-has stopped flowing.
+Welcome Spark! You are the dedicated repair bot of the Quantum Apex mainframe.
+Your mission: ensure seamless operation and maintain the flow of data.
 
-Spark, you are the only hope for the citizens of mainframe land. Only you can
-get the Quantum Apex running again. To reboot the system, you must put each of
-chips back in their socket.
+Disaster strikes! An unprecedented earthquake has dislodged chips, plunging the
+mainframe into chaos. Systems down, data halted.
 
-Work one circuitboard at a time and push each of the chips back into their
-sockets. As each chip is placed, it will light up green. You can push chips,
-but you cannot pull them, so plan your moves carefully.
+You Spark, are mainframe land's beacon of hope. The Quantum Apex's reboot rests
+on your circuits. Your task: reseat every chip into its rightful socket.
+
+Tackle one circuitboard at a time, nudging chips back into place. A correct
+placement ignites a green glow. Remember, chips can be pushed but not pulled.
+Strategy is key.
 
 D-Pad: Moves
 A button: Undo one move
